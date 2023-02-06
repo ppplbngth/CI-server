@@ -10,6 +10,13 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+
+import group22.utils.CloneRepository;
+import group22.utils.Helpers;
+
+
 /** 
  Skeleton of a ContinuousIntegrationServer which acts as webhook
  See the Jetty documentation for API documentation of those classes.
@@ -28,9 +35,18 @@ public class CIServer extends AbstractHandler
 
         System.out.println(target);
 
+        JSONObject jsonObject = new JSONObject();
         // here you do all the continuous integration tasks
         // for example
         // 1st clone your repository
+        try{
+            jsonObject = Helpers.convertBody(request);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        String cloneUrl = Helpers.getCloneUrl(jsonObject);
+        CloneRepository.cloneRepository(cloneUrl, "./repo");
         // 2nd compile the code
 
         response.getWriter().println("CI job done");

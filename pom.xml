@@ -38,12 +38,21 @@
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
       <version>2.5</version>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
       <version>6.4.0.202211300538-r</version>
+    </dependency>
+    <dependency>  
+      <groupId>com.googlecode.json-simple</groupId>  
+      <artifactId>json-simple</artifactId>  
+      <version>1.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>2.0.6</version>
     </dependency>
   </dependencies>
 
