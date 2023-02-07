@@ -10,6 +10,7 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 
+import org.eclipse.jgit.api.Git;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
@@ -23,6 +24,8 @@ import group22.utils.Helpers;
 */
 public class CIServer extends AbstractHandler
 {
+    private static final String localRepoPath = "./repo";
+
     @Override
     public void handle(String target,
                        Request baseRequest,
@@ -46,8 +49,12 @@ public class CIServer extends AbstractHandler
             System.out.println(e.getMessage());
         }
 
-        String cloneUrl = Helpers.getCloneUrl(jsonObject);
-        CloneRepository.cloneRepository(cloneUrl, "./repo");
+
+        if(!Helpers.judgeDirExist(localRepoPath)) {
+            String cloneUrl = Helpers.getCloneUrl(jsonObject);
+            CloneRepository.cloneRepository(cloneUrl,  localRepoPath);
+        }
+
         // 2nd compile the code
 
         response.getWriter().println("CI job done");
