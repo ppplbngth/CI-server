@@ -5,7 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
  
 import java.io.IOException;
- 
+
+import group22.utils.JGitUtils;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
@@ -37,7 +38,7 @@ public class CIServer extends AbstractHandler
         response.setStatus(HttpServletResponse.SC_OK);
         baseRequest.setHandled(true);
 
-        System.out.println(target);
+        //System.out.println(target);
 
         JSONObject jsonObject = new JSONObject();
         // here you do all the continuous integration tasks
@@ -54,6 +55,9 @@ public class CIServer extends AbstractHandler
             String cloneUrl = Helpers.getCloneUrl(jsonObject);
             CloneRepository.cloneRepository(cloneUrl,  localRepoPath);
         }
+
+        Git git = JGitUtils.openRpo(localRepoPath);
+        System.out.println(git);
 
         // 2nd compile the code
 
