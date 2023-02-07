@@ -16,6 +16,7 @@ public class Helpers {
     // "return JSON object containing the data from the webhook
     // @throws Exception
     public static JSONObject convertBody(HttpServletRequest request) throws Exception{
+
         //read the payload line by line
         StringBuilder st = new StringBuilder();
         BufferedReader buff = request.getReader();
@@ -28,6 +29,7 @@ public class Helpers {
         buff.close();
         
         payload = st.toString();
+        System.out.println("payload: " + payload);
         JSONParser parser = new JSONParser();
         JSONObject json = (JSONObject) parser.parse(payload);
         return json;
@@ -36,6 +38,11 @@ public class Helpers {
 
     public static String getCloneUrl(JSONObject payload){
         return ((JSONObject) payload.get("repository")).get("clone_url").toString();
+    }
+
+    public static String getBranchName(JSONObject payload){
+        String[] arr = payload.get("ref").toString().split("/");
+        return arr[arr.length - 1];
     }
 
     /**
@@ -51,4 +58,5 @@ public class Helpers {
         }
         else return false;
     }
+
 }

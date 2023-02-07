@@ -44,12 +44,12 @@ public class CIServer extends AbstractHandler
         // here you do all the continuous integration tasks
         // for example
         // 1st clone your repository
+        System.out.println(request);
         try{
             jsonObject = Helpers.convertBody(request);
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
-
 
         if(!Helpers.judgeDirExist(localRepoPath)) {
             String cloneUrl = Helpers.getCloneUrl(jsonObject);
@@ -57,7 +57,9 @@ public class CIServer extends AbstractHandler
         }
 
         Git git = JGitUtils.openRpo(localRepoPath);
-        System.out.println(git);
+
+        String branchName = Helpers.getBranchName(jsonObject);
+        System.out.println(branchName);
 
         // 2nd compile the code
 
