@@ -36,6 +36,7 @@ public class CIServer extends AbstractHandler
 
         String method = request.getMethod();
         String cloneUrl = null;
+        String branch = null;
         String localPath = "./repo";
         JSONObject jsonObject = new JSONObject();
         // here you do all the continuous integration tasks
@@ -45,7 +46,8 @@ public class CIServer extends AbstractHandler
             try{
                 jsonObject = Helpers.convertBody(request);
                 cloneUrl = Helpers.getCloneUrl(jsonObject);
-                CloneRepository.cloneRepository(cloneUrl, localPath);
+                branch = Helpers.getBranch(jsonObject);
+                CloneRepository.cloneRepository(cloneUrl, localPath, branch);
                 CompileProject.compileProject(localPath);
             } catch (Exception e){
                 System.out.println(e.getMessage());

@@ -3,6 +3,8 @@ package group22;
 import group22.utils.*;
 import org.junit.jupiter.api.Test;
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.FileSystems;
 import java.io.IOException;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
@@ -16,8 +18,12 @@ public class CompileProjectTest {
     @Test
     public void testPositiveCompileProject() throws IOException {
         String repositoryURL = "https://github.com/ppplbngth/CI-server.git";
-        String localPath = "test-repository-compile";
-        CloneRepository.cloneRepository(repositoryURL, localPath);
+        Path projectPath = FileSystems.getDefault().getPath("test-repository-compile");
+        String localPath = projectPath.toAbsolutePath().toString();
+        System.out.println(localPath);
+        //String localPath = "/test-repository-compile";
+        String branch = "main";
+        CloneRepository.cloneRepository(repositoryURL, localPath, branch);
         //File localRepository = new File(localPath);
 
         boolean result = CompileProject.compileProject(localPath);
