@@ -3,10 +3,14 @@ package group22;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
- 
-import java.io.IOException;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Collections;
+
+import group22.service.GitService;
 import group22.utils.JGitUtils;
+import org.apache.maven.shared.invoker.*;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
@@ -25,7 +29,7 @@ import group22.utils.Helpers;
 */
 public class CIServer extends AbstractHandler
 {
-    private static final String localRepoPath = "./repo";
+    public static final String localRepoPath = "./repo";
 
     @Override
     public void handle(String target,
@@ -44,7 +48,7 @@ public class CIServer extends AbstractHandler
         // here you do all the continuous integration tasks
         // for example
         // 1st clone your repository
-        System.out.println(request);
+
         try{
             jsonObject = Helpers.convertBody(request);
         } catch (Exception e){
@@ -59,19 +63,31 @@ public class CIServer extends AbstractHandler
         Git git = JGitUtils.openRpo(localRepoPath);
 
         String branchName = Helpers.getBranchName(jsonObject);
-        System.out.println(branchName);
+
+        GitService.pullRepo(git, branchName);
 
         // 2nd compile the code
 
-        response.getWriter().println("CI job done");
+        // test
+        boolean testRsl = GitService.testBranch(git, branchName);
+
+        if(!testRsl){
+            response.setStatus(400);
+            response.getWriter().println("test failed");
+        }
+        else {
+            response.getWriter().println("test passed");
+        }
     }
  
     // used to start the CI server in command line
     public static void main(String[] args) throws Exception
     {
+
         Server server = new Server(8080);
-        server.setHandler(new CIServer()); 
+        server.setHandler(new CIServer());
         server.start();
         server.join();
+
     }
 }

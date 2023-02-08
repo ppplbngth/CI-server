@@ -29,7 +29,6 @@ public class Helpers {
         buff.close();
         
         payload = st.toString();
-        System.out.println("payload: " + payload);
         JSONParser parser = new JSONParser();
         JSONObject json = (JSONObject) parser.parse(payload);
         return json;
