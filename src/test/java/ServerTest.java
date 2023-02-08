@@ -1,5 +1,5 @@
 import org.junit.jupiter.api.Test;
-
+import static org.junit.Assert.assertTrue;
 
 
 public class ServerTest {
@@ -9,6 +9,7 @@ public class ServerTest {
      */
     @Test
     public void FirstTest(){
-
+        Boolean test = true;
+        assertTrue(test);
     }
 }
