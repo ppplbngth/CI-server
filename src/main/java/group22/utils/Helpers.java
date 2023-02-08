@@ -35,5 +35,9 @@ public class Helpers {
     public static String getCloneUrl(JSONObject payload){
         return ((JSONObject) payload.get("repository")).get("clone_url").toString();
     }
+
+    public static String getBranch(JSONObject payload){
+        return payload.get("refs").toString();
+    }
     
 }
