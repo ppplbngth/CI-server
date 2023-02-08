@@ -18,10 +18,7 @@ public class CompileProjectTest {
     @Test
     public void testPositiveCompileProject() throws IOException {
         String repositoryURL = "https://github.com/ppplbngth/CI-server.git";
-        Path projectPath = FileSystems.getDefault().getPath("test-repository-compile");
-        String localPath = projectPath.toAbsolutePath().toString();
-        System.out.println(localPath);
-        //String localPath = "/test-repository-compile";
+        String localPath = "/test-repository-compile";
         String branch = "main";
         CloneRepository.cloneRepository(repositoryURL, localPath, branch);
         //File localRepository = new File(localPath);
