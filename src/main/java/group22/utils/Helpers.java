@@ -39,10 +39,7 @@ public class Helpers {
         return ((JSONObject) payload.get("repository")).get("clone_url").toString();
     }
 
-    public static String getBranchName(JSONObject payload){
-        String[] arr = payload.get("ref").toString().split("/");
-        return arr[arr.length - 1];
-    }
+
 
     /**
      * judge if a directory exists
@@ -55,7 +52,15 @@ public class Helpers {
         if(file.exists() && file.isDirectory()){
             return true;
         }
-        else return false;
+        else{
+            return false;
+        }
     }
+
+
+    public static String getBranch(JSONObject payload){
+        return payload.get("refs").toString();
+    }
+    
 
 }
