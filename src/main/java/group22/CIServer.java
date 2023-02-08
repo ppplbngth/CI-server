@@ -34,9 +34,9 @@ public class CIServer extends AbstractHandler
         response.setStatus(HttpServletResponse.SC_OK);
         baseRequest.setHandled(true);
 
-        System.out.println(target);
         String method = request.getMethod();
-
+        String cloneUrl = null;
+        String localPath = "./repo";
         JSONObject jsonObject = new JSONObject();
         // here you do all the continuous integration tasks
         // for example
@@ -44,16 +44,15 @@ public class CIServer extends AbstractHandler
         if ("POST".equals(method))
             try{
                 jsonObject = Helpers.convertBody(request);
+                cloneUrl = Helpers.getCloneUrl(jsonObject);
+                CloneRepository.cloneRepository(cloneUrl, localPath);
+                CompileProject.compileProject(localPath);
             } catch (Exception e){
                 System.out.println(e.getMessage());
             }
         
-        String localPath = "./repo";
-        String cloneUrl = Helpers.getCloneUrl(jsonObject);
         // 1st clone your repository
-        CloneRepository.cloneRepository(cloneUrl, localPath);
         // 2nd compile the code
-        CompileProject.compileProject(localPath);
         // 3d  run all the tests
         
         response.getWriter().println("CI job done");
