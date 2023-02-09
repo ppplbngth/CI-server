@@ -1,4 +1,4 @@
-package src.test.java.servertests;
+package servertests;
 
 import group22.utils.CloneRepository;
 import group22.utils.CompileProject;
