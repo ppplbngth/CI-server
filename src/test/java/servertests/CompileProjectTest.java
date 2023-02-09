@@ -1,4 +1,4 @@
-package mocktests;
+package src.test.java.servertests;
 
 import group22.utils.*;
 import org.junit.jupiter.api.Test;
