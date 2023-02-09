@@ -1,4 +1,4 @@
-package group22;
+package mocktests;
 
 import group22.utils.CloneRepository;
 import org.junit.jupiter.api.Test;

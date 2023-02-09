@@ -1,6 +1,5 @@
 package group22.utils;
 
-
 import java.io.File;
 import java.io.IOException;
 
@@ -14,7 +13,7 @@ public class AutomatedTestProject {
     public static Boolean testBranch(String localPath){
 
         try{
-            String mvnCommand = "mvn test -Dtest=AutomatedTest";
+            String mvnCommand = "mvn test";
             Process process = Runtime.getRuntime().exec(mvnCommand, null, new File(localPath));
             int exitCode = process.waitFor();
 
