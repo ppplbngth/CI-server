@@ -3,9 +3,7 @@ import java.io.BufferedReader;
 import java.io.File;
 
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
-import org.eclipse.jetty.server.Request;
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -59,7 +57,7 @@ public class Helpers {
 
 
     public static String getBranch(JSONObject payload){
-        return payload.get("refs").toString();
+        return payload.get("ref").toString();
     }
     
 
