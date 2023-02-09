@@ -13,6 +13,10 @@ import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 
 import org.json.simple.JSONObject;
+import group22.utils.SendEmailNotification;
+
+
+
 
 
 
@@ -35,7 +39,8 @@ public class CIServer extends AbstractHandler
         response.setStatus(HttpServletResponse.SC_OK);
         baseRequest.setHandled(true);
 
-
+        //insert email here
+        String to="hannamina@live.se";
         String method = request.getMethod();
         String cloneUrl = null;
         String branch = null;
@@ -60,8 +65,11 @@ public class CIServer extends AbstractHandler
                 if (!testRsl) {
                     response.setStatus(400);
                     response.getWriter().println("test failed");
+                    SendEmailNotification.sendEmailNotification(to, "Build result", "build failed, tests failed or an error occured while testing");
                 } else {
                     response.getWriter().println("test passed");
+                    SendEmailNotification.sendEmailNotification(to, "Build result", "build succeded, tests passed");
+
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
