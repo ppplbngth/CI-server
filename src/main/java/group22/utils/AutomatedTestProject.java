@@ -3,14 +3,17 @@ package group22.utils;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * This class handles the automated testing of the project.
+ */
 public class AutomatedTestProject {
     /**
-     * automated test
-     *
-     * @param localPath
-     * @return if test results are all correct
+     * Runs the test of the cloned repository using the command "mvn test" 
+     * 
+     * @param localPath path to the repository
+     * @return true if all test are correct, else return false. 
      */
-    public static Boolean testBranch(String localPath){
+    public static Boolean runTests(String localPath){
 
         try{
             String mvnCommand = "mvn test";
