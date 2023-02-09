@@ -26,3 +26,6 @@ buildNumber.properties
 .vscode/
 src/.vscode/
 src/.DS_Store
+
+.idea/
+Assignment2.iml
