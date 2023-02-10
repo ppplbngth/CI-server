@@ -34,7 +34,7 @@ Copy the forwarding URL (e.g http://8929b010.ngrok.io) and add it as webhook ```
 Start the CI Server, open a new terminal and type:
 ```
 cd CI-Server
-java -cp "jars/*":Assignment2-0.0.1.jar group22.CIServer
+java -cp "jars/*":target/Assignment2-0.0.1.jar group22.CIServer
 
 #On windows
 java -cp "target/Assignment2-0.0.1.jar;jars\*" group22.CIServer
