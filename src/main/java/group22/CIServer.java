@@ -17,8 +17,9 @@ import org.json.simple.JSONObject;
 
 
 /** 
- Skeleton of a ContinuousIntegrationServer which acts as webhook
- See the Jetty documentation for API documentation of those classes.
+ * An implementation of a simple CI server.
+ * The class uses Jetty and can clone, compile and test a branch of a Github repo using webhooks.
+ * Implemented using the skeleton found at https://github.com/KTH-DD2480/smallest-java-ci
 */
 public class CIServer extends AbstractHandler
 {
@@ -43,19 +44,19 @@ public class CIServer extends AbstractHandler
         String localPath = "./repo";
 
         JSONObject jsonObject = new JSONObject();
-        // here you do all the continuous integration tasks
-        // for example
-        // 1st clone your repository
 
         if ("POST".equals(method)) {
             try {
                 jsonObject = Helpers.convertBody(request);
                 cloneUrl = Helpers.getCloneUrl(jsonObject);
                 branch = Helpers.getBranch(jsonObject);
+
                 CloneRepository.cloneRepository(cloneUrl, localPath, branch);
                 response.getWriter().println("Cloned repository");
+
                 CompileProject.compileProject(localPath);
                 response.getWriter().println("Built project");
+
                 testRsl = AutomatedTestProject.runTests(localPath);
                 if (!testRsl) {
                     response.setStatus(400);
@@ -68,15 +69,16 @@ public class CIServer extends AbstractHandler
             }
         }
         
-        // 1st clone your repository
-        // 2nd compile the code
-        // 3d  run all the tests
         
         response.getWriter().println("CI job done");
 
     }
  
-    // used to start the CI server in command line
+    /** 
+    * Starts the CIServer on port 8080
+    * @param args arguments to the program, none used
+    * @throws Exception on errors
+    */
     public static void main(String[] args) throws Exception
     {
 

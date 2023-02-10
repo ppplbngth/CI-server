@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.IOException;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Class for testing the testing in the folder test/java/group22
+ */
 public class AutomatedTestTest {
     
     /**

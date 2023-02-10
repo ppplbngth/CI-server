@@ -4,12 +4,15 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 
 import java.io.File;
-
+/**
+ * A class for cloning a Git repository
+ */
 public class CloneRepository {
     /**
      * Clones a Git repository.
      * @param repositoryURL the url to the repository.
      * @param localPath the specified path to the local repository being cloned.
+     * @param branch the specific branch to be cloned
      */
     public static void cloneRepository(String repositoryURL, String localPath, String branch) {
         
