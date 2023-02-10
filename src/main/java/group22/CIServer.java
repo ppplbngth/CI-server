@@ -27,7 +27,6 @@ import group22.utils.SendEmailNotification;
 */
 public class CIServer extends AbstractHandler
 {
-    public static final String localRepoPath = "./repo";
 
     @Override
     public void handle(String target,

@@ -17,9 +17,9 @@ import io.github.cdimascio.dotenv.Dotenv;
  public class SendEmailNotification {
     /**
      * Sends email notification of build result
-     * @param recipientEmail the email to the recipient.
      * @param subject the subject of the email.
      * @param buildResult the result of the build.
+     * @return String if the email was successfully sent
      */
     public static String sendEmailNotification( String subject, String buildResult) {     
         Dotenv dotenv = Dotenv.configure().directory("./src/main/java/group22/resources").load();
