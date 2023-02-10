@@ -17,7 +17,6 @@ import io.github.cdimascio.dotenv.Dotenv;
  public class SendEmailNotification {
     /**
      * Sends email notification of build result
-     * @param recipientEmail the email to the recipient.
      * @param subject the subject of the email.
      * @param buildResult the result of the build.
      */
