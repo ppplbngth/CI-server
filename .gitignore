@@ -26,6 +26,6 @@ buildNumber.properties
 .vscode/
 src/.vscode/
 src/.DS_Store
-
+src/main/java/group22/resources/.env
 .idea/
 Assignment2.iml
