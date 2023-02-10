@@ -15,7 +15,7 @@ public class Helpers {
      * create JSON object of the http post request body from the webhook
      * @param request a http Post request payload
      * @return JSONObject containing the data from the webhook
-     * @throws Exception
+     * @throws Exception if bad request
      */
     public static JSONObject convertBody(HttpServletRequest request) throws Exception{
 
@@ -38,7 +38,7 @@ public class Helpers {
     }
 
     /**
-     * 
+     * Fetches clone url from JSONObject 
      * @param payload a JSONObject containing a webhook payload
      * @return String corresponding to the value under the "clone_url" key contained within the JSON object 
      */
@@ -47,7 +47,7 @@ public class Helpers {
     }
 
     /**
-     * 
+     * Fetches the branch name from the JSONObject
      * @param payload a JSONObject containing a webhook payload
      * @return String corresponding to the value under the "ref" key contained within the JSON object 
      */
