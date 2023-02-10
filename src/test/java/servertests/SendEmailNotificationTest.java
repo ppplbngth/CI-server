@@ -17,16 +17,6 @@ public class SendEmailNotificationTest {
         String res=SendEmailNotification.sendEmailNotification("test", "test of email function");
         assertEquals("Email sent successfully",res);
     }
-    /**
-     * Assert that the email is not sent successfully if the wrong password is used
-     */
-    @Test
-    public void testNegativeSendEmailNotification() throws IOException {
-
-        String res=SendEmailNotification.sendEmailNotification("test", "test of email function");
-        assertNotEquals("Email sent successfully", res);
-
-    }
 
 }
 
