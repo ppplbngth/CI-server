@@ -10,6 +10,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
+/**
+ * Class for testing compilation of cloned Git repository
+ */
 public class CompileProjectTest {
     
     /**

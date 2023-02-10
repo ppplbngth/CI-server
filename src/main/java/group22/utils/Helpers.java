@@ -1,18 +1,22 @@
 package group22.utils;
 import java.io.BufferedReader;
-import java.io.File;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import javax.servlet.http.HttpServletRequest;
 
 
-
+/**
+* This class contains helper functions for parsing and/or retrieving data from JSON formatted data in a HTTP body
+*/
 public class Helpers {
-    // create JSON object of the http post request body from the webhook
-    // @param buff http Post request payload
-    // "return JSON object containing the data from the webhook
-    // @throws Exception
+    
+    /**
+     * create JSON object of the http post request body from the webhook
+     * @param request a http Post request payload
+     * @return JSONObject containing the data from the webhook
+     * @throws Exception
+     */
     public static JSONObject convertBody(HttpServletRequest request) throws Exception{
 
         //read the payload line by line
@@ -33,29 +37,20 @@ public class Helpers {
         
     }
 
+    /**
+     * 
+     * @param payload a JSONObject containing a webhook payload
+     * @return String corresponding to the value under the "clone_url" key contained within the JSON object 
+     */
     public static String getCloneUrl(JSONObject payload){
         return ((JSONObject) payload.get("repository")).get("clone_url").toString();
     }
 
-
-
     /**
-     * judge if a directory exists
-     *
-     * @param path file path to be judged
-     * @return if file exists
+     * 
+     * @param payload a JSONObject containing a webhook payload
+     * @return String corresponding to the value under the "ref" key contained within the JSON object 
      */
-    public static Boolean judgeDirExist(String path){
-        File file = new File(path);
-        if(file.exists() && file.isDirectory()){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-
     public static String getBranch(JSONObject payload){
         return payload.get("ref").toString();
     }

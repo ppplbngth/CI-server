@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Class for testing cloning of Git repositories
+ */
 public class CloneRepositoryTest {
 
     /**
