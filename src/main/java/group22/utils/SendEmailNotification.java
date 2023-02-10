@@ -8,25 +8,24 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import io.github.cdimascio.dotenv.Dotenv;
 
-//class that sends a notification about the build result to the email specified
-public class SendEmailNotification {
+
+/**
+ * class that sends a notification about the build result to the email specified
+*/
+ public class SendEmailNotification {
     /**
      * Sends email notification of build result
      * @param recipientEmail the email to the recipient.
      * @param subject the subject of the email.
      * @param buildResult the result of the build.
      */
-    public static void sendEmailNotification(String recipientEmail, String subject, String buildResult) {     
-        // Recipient's email ID 
-        String to = recipientEmail;
-        // Sender's email ID 
-        String from = "dd2480group22@gmail.com";
-        final String username = "dd2480group22@gmail.com";
-        final String password = EnvironmentVars.getPassword();
-
-    
-        // Assuming you are sending email through Gmail SMTP
+    public static String sendEmailNotification( String subject, String buildResult) {     
+        Dotenv dotenv = Dotenv.configure().directory("./src/main/java/group22/resources").load();
+        final String to =dotenv.get("RECIPIENT_EMAIL");
+        final String username = dotenv.get("GMAIL_USER");
+        final String password = dotenv.get("GMAIL_PASSWORD");
         String host = "smtp.gmail.com";
     
         Properties props = new Properties();
@@ -35,7 +34,7 @@ public class SendEmailNotification {
         props.put("mail.smtp.host", host);
         props.put("mail.smtp.port", "587");
 
-	
+        
         Session session = Session.getInstance(props,
             new javax.mail.Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
@@ -45,16 +44,17 @@ public class SendEmailNotification {
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(from));
+            message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO,
                 InternetAddress.parse(to));
             message.setSubject(subject);
             message.setText("Build result: "+ buildResult);
             Transport.send(message);
 
-            System.out.println("Email sent successfully");
+            String res="Email sent successfully";
+            return res;
         } catch (MessagingException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         }
     }
 }

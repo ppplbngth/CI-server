@@ -65,10 +65,10 @@ public class CIServer extends AbstractHandler
                 if (!testRsl) {
                     response.setStatus(400);
                     response.getWriter().println("test failed");
-                    SendEmailNotification.sendEmailNotification(to, "Build result", "build failed, tests failed or an error occured while testing");
+                    SendEmailNotification.sendEmailNotification( "Build result", "build failed, tests failed or an error occured while testing");
                 } else {
                     response.getWriter().println("test passed");
-                    SendEmailNotification.sendEmailNotification(to, "Build result", "build succeded, tests passed");
+                    SendEmailNotification.sendEmailNotification( "Build result", "build succeded, tests passed");
 
                 }
             } catch (Exception e) {
