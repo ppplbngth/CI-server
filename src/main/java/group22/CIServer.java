@@ -45,7 +45,6 @@ public class CIServer extends AbstractHandler
         String branch = null;
         boolean testRsl = false;
         String localPath = "./repo";
-
         JSONObject jsonObject = new JSONObject();
 
         if ("POST".equals(method)) {
