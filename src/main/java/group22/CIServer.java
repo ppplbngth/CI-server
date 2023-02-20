@@ -40,7 +40,6 @@ public class CIServer extends AbstractHandler
         baseRequest.setHandled(true);
 
         //insert email here
-        String to="hannamina@live.se";
         String method = request.getMethod();
         String cloneUrl = null;
         String branch = null;
