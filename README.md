@@ -20,6 +20,7 @@ RECIPIENT_EMAIL="recipient email"
 
 ```
 
+Redovisning
 
 To build the project use:
 ```bash
