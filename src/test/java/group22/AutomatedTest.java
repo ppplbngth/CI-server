@@ -15,7 +15,7 @@ public class AutomatedTest {
      */
     @Test
     public void runsMvnCommandTest(){
-        Boolean test = true;
+        Boolean test = false;
         assertTrue(test);
     }
 }
